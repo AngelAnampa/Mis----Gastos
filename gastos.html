@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AHORRAR & GASTAR // Registro </title>
+    <link rel="stylesheet" href="gastos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <!-- Cabecera estilo HUD -->
+        <header class="hud-header">
+            <div class="title-box">
+                <span class="badge"> AJAD // ONLINE</span>
+                <h1>AHORRAR & GASTAR <span class="neon-text">TRACKER</span></h1>
+                <p>Registro táctico de compras, boletas e inventario en la nube</p>
+            </div>
+            <div class="stats-box">
+                <div class="stat-card">
+                    <span class="stat-label">GASTO TOTAL</span>
+                    <span class="stat-value" id="total-gastado">S/ 0.00</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">ITEMS GUARDADOS</span>
+                    <span class="stat-value" id="total-items">0</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="dashboard-grid">
+            <!-- Panel Izquierdo: Formulario de Registro -->
+            <section class="panel form-panel">
+                <h2><span class="icon">⚡</span> NUEVO REGISTRO</h2>
+                <form id="gasto-form">
+                    <div class="input-group">
+                        <label for="titulo">ÍTEM / CONCEPTO</label>
+                        <input type="text" id="titulo" placeholder="Ej: Almuerzo, Recarga, Pasaje..." required>
+                    </div>
+
+                    <div class="row-2">
+                        <div class="input-group">
+                            <label for="monto">MONTO (S/)</label>
+                            <input type="number" id="monto" step="0.01" min="0" placeholder="0.00" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="categoria">CATEGORÍA</label>
+                            <select id="categoria">
+                                <option value="Comida">🍔 Comida / Bebida</option>
+                                <option value="Gaming">🎮 Gaming / Recargas</option>
+                                <option value="Transporte">🚌 Transporte</option>
+                                <option value="Estudios">💻 Estudios / Tech</option>
+                                <option value="Otros">📦 Otros</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="notas">DETALLES / NOTAS</label>
+                        <textarea id="notas" rows="3" placeholder="Escribe detalles extra, lugar de compra o notas..."></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label>EVIDENCIA / BOLETA (OPCIONAL)</label>
+                        
+                        <!-- Dos botones separados: Cámara directa o Galería -->
+                        <div class="photo-actions">
+                            <label for="input-camara" class="btn-photo cam-btn">
+                                📷 TOMAR FOTO
+                            </label>
+                            <input type="file" id="input-camara" accept="image/*" capture="environment" class="hidden-input">
+
+                            <label for="input-galeria" class="btn-photo gal-btn">
+                                🖼️ SUBIR GALERÍA
+                            </label>
+                            <input type="file" id="input-galeria" accept="image/*" class="hidden-input">
+                        </div>
+
+                        <p id="file-status" class="file-status-text">Ninguna imagen seleccionada</p>
+
+                        <div id="preview-container" class="hidden">
+                            <img id="image-preview" src="" alt="Vista previa">
+                            <button type="button" id="remove-img-btn">✖ Quitar imagen</button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-cyber">GUARDAR EN INVENTARIO</button>
+                </form>
+            </section>
+
+            <!-- Panel Derecho: Historial / Inventario -->
+            <section class="panel history-panel">
+                <div class="history-header">
+                    <h2><span class="icon">🎒</span> INVENTARIO DE GASTOS</h2>
+                    <select id="filtro-categoria" class="filter-select">
+                        <option value="Todos">Todos los ítems</option>
+                        <option value="Comida">🍔 Comida</option>
+                        <option value="Gaming">🎮 Gaming</option>
+                        <option value="Transporte">🚌 Transporte</option>
+                        <option value="Estudios">💻 Estudios</option>
+                        <option value="Otros">📦 Otros</option>
+                    </select>
+                </div>
+
+                <div id="lista-gastos" class="cards-grid">
+                    <div class="empty-state">
+                        <h3>[ CONECTANDO CON LA NUBE... ]</h3>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal para ver imagen en tamaño completo -->
+    <div id="image-modal" class="modal hidden">
+        <span class="close-modal" id="close-modal">&times;</span>
+        <img class="modal-content" id="modal-img">
+        <div id="modal-caption"></div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
